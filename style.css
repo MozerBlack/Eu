@@ -3,8 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Arial/sans-serif é o fallback para o restante do texto */
-    font-family: Arial, sans-serif; 
+    font-family: Arial, sans-serif; /* Fonte padrão para o corpo do texto */
 }
 
 body {
@@ -14,15 +13,16 @@ body {
     padding: 20px 0;
 }
 
-/* CONTAINER PRINCIPAL IMITANDO O POSTER */
+/* CONTAINER PRINCIPAL: Simula o pôster e centraliza o conteúdo */
 .poster-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 600px; /* Largura máxima típica de um pôster vertical */
     background-color: white;
     padding: 20px 30px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave para destacar o "pôster" */
 }
 
-/* HEADER (Sem alteração) */
+/* HEADER */
 .header {
     display: flex;
     justify-content: space-between;
@@ -49,7 +49,7 @@ body {
     object-fit: contain;
 }
 
-/* SEÇÃO DE INFORMAÇÕES (Com Fundo Cinza) */
+/* SEÇÃO DE INFORMAÇÕES E BIO */
 .info-section {
     display: flex;
     gap: 10px;
@@ -60,33 +60,33 @@ body {
 .photo-container {
     width: 45%;
     max-width: 200px;
+    /* Efeito de borda dupla (borda branca e sombra) */
     box-shadow: 0 0 0 5px white, 0 0 0 10px rgba(0, 0, 0, 0.1); 
-    transform: translateY(10px); 
+    transform: translateY(10px); /* Leve deslocamento vertical */
 }
 .athlete-photo {
     width: 100%;
     height: auto;
     display: block;
+    /* Para criar o efeito circular/oval */
     border-radius: 50%;
 }
 
 .details-container {
     width: 55%;
+    /* Cor de fundo cinza escuro do design */
     background-color: #444; 
     color: white;
     padding: 15px;
     border-radius: 10px;
-    font-weight: 400; /* Joti One é usada no peso 400 e já é grossa */
     line-height: 1.4;
     font-size: 14px;
-    /* APLICAÇÃO DA FONTE JOTI ONE */
+    /* Aplicação da fonte Joti One para o texto principal */
     font-family: 'Joti One', cursive; 
 }
 
 .details-container p {
     margin-bottom: 5px;
-    /* Removendo a sombra de texto manual, pois Joti One já tem um estilo de contorno próprio */
-    text-shadow: none; 
 }
 
 .bio-text {
@@ -98,11 +98,10 @@ body {
     text-align: center;
     font-size: 18px;
     margin-top: 10px;
-    font-weight: 400;
     font-family: 'Joti One', cursive;
 }
 
-/* TÍTULO DA GALERIA (Sem alteração) */
+/* TÍTULO DA GALERIA */
 .title-conquistas-wrapper {
     text-align: center;
     margin: 20px 0 15px 0;
@@ -113,8 +112,9 @@ body {
     height: auto;
 }
 
-/* GALERIA (Sem alteração) */
+/* GALERIA (CSS GRID) */
 .gallery {
+    /* Define 4 colunas para a primeira linha */
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
     gap: 5px; 
@@ -122,7 +122,7 @@ body {
 }
 
 .gallery-item {
-    height: 100px; 
+    height: 100px; /* Altura padrão para os itens da primeira linha */
     overflow: hidden;
     border-radius: 5px;
 }
@@ -130,17 +130,18 @@ body {
 .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Garante que a imagem preencha o container */
     display: block;
 }
 
+/* Ajustes de layout para a segunda linha (Pódio, Luta, Logo) */
 .wide-item:nth-child(5) {
     grid-column: span 1; 
     grid-row: 2 / span 1;
     height: 130px;
 }
 .wide-item:nth-child(6) {
-    grid-column: 2 / span 2; 
+    grid-column: 2 / span 2; /* Ocupa 2 colunas */
     grid-row: 2 / span 1;
     height: 130px;
 }
@@ -153,12 +154,13 @@ body {
     align-items: center;
     justify-content: center;
     padding: 5px;
+    background-color: #f0f0f0; /* Fundo claro para destacar o logo */
 }
 .logo-item img {
     object-fit: contain;
 }
 
-/* RODAPÉ (Aplicação da Fonte Joti One) */
+/* RODAPÉ */
 .footer {
     display: flex;
     justify-content: center;
@@ -166,11 +168,9 @@ body {
     margin-top: 10px;
     padding: 10px 0;
     gap: 10px;
-    font-weight: 700;
     color: black;
     border-top: 1px solid #ccc; 
     font-size: 14px;
-    /* APLICAÇÃO DA FONTE JOTI ONE */
     font-family: 'Joti One', cursive;
 }
 
@@ -184,8 +184,12 @@ body {
     font-size: 16px; 
 }
 
-/* MEDIA QUERY (Sem alteração) */
+/* MEDIA QUERY (Responsividade para telas menores, como celular) */
 @media (max-width: 450px) {
+    .poster-container {
+        padding: 15px;
+    }
+    /* Muda para layout de coluna no mobile */
     .info-section {
         flex-direction: column;
         align-items: center;
@@ -199,10 +203,8 @@ body {
     .details-container {
         text-align: left;
     }
-    .title-logo {
-        width: 60%;
-    }
     
+    /* Galeria: Muda para 2 colunas e remove o layout complexo */
     .gallery {
         grid-template-columns: repeat(2, 1fr); 
         gap: 5px;
@@ -211,8 +213,13 @@ body {
     .wide-item:nth-child(5), 
     .wide-item:nth-child(6), 
     .logo-item {
-        grid-column: span 1; 
-        grid-row: auto;
+        grid-column: span 1; /* Todos ocupam 1 coluna */
+        grid-row: auto; /* Reorganiza automaticamente */
         height: 100px;
+    }
+    .footer {
+        flex-wrap: wrap;
+        text-align: center;
+        gap: 5px;
     }
 }
