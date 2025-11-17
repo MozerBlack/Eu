@@ -3,22 +3,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Usando a mesma fonte do texto no pôster, que parece ser Sans-serif com contorno/sombra */
+    font-family: Arial, sans-serif; 
 }
 
 body {
-    font-family: Arial, sans-serif; 
     background-color: white; 
     display: flex;
     justify-content: center;
     padding: 20px 0;
 }
 
-/* CONTAINER PRINCIPAL IMITANDO O POSTER */
 .poster-container {
     width: 100%;
     max-width: 600px;
     background-color: white;
-    /* Ajuste o padding para simular as margens do pôster */
     padding: 20px 30px; 
 }
 
@@ -31,7 +30,6 @@ body {
 }
 
 .title-logo {
-    /* Ajusta o tamanho da imagem de título 'karatê sports' */
     width: 45%; 
     max-height: 40px;
     object-fit: contain;
@@ -43,7 +41,6 @@ body {
     gap: 10px;
 }
 
-/* Estilos para os ícones de imagem (WhatsApp, Instagram, Facebook) no topo */
 .icon-img {
     width: 25px;
     height: 25px;
@@ -51,7 +48,7 @@ body {
     object-fit: contain;
 }
 
-/* SEÇÃO DE INFORMAÇÕES (Com Fundo Cinza) */
+/* SEÇÃO DE INFORMAÇÕES (Fundo Cinza Escuro) */
 .info-section {
     display: flex;
     gap: 10px;
@@ -60,10 +57,9 @@ body {
 }
 
 .photo-container {
-    /* O Mozer.jpg já é oval/circular, então apenas ajustamos o tamanho e a borda */
     width: 45%;
     max-width: 200px;
-    /* Borda branca e anel de destaque (simulando a borda do pôster) */
+    /* Borda e anel de destaque (cinza claro) */
     box-shadow: 0 0 0 5px white, 0 0 0 10px rgba(0, 0, 0, 0.1); 
     transform: translateY(10px); 
 }
@@ -76,8 +72,8 @@ body {
 
 .details-container {
     width: 55%;
-    /* Cor de fundo cinza escuro (Rectangle 4.jpg) para a caixa de texto */
-    background-color: rgba(68, 68, 68, 0.9); 
+    /* Cor de fundo cinza escuro (simulando o Rectangle 4) */
+    background-color: #444; 
     color: white; /* Texto branco */
     padding: 15px;
     border-radius: 10px;
@@ -88,7 +84,10 @@ body {
 
 .details-container p {
     margin-bottom: 5px;
+    /* Sombra de texto para simular o contorno/peso da fonte do pôster */
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5); 
 }
+
 .details-container strong {
     font-weight: 900;
 }
@@ -105,7 +104,7 @@ body {
     font-weight: 900;
 }
 
-/* TÍTULO DA GALERIA (Usando a imagem Rotina e Conquistas.jpg) */
+/* TÍTULO DA GALERIA (Imagem Rotina e Conquistas.jpg) */
 .title-conquistas-wrapper {
     text-align: center;
     margin: 20px 0 15px 0;
@@ -169,16 +168,21 @@ body {
     align-items: center;
     margin-top: 10px;
     padding: 10px 0;
-    /* O rodapé é centralizado na imagem original */
     gap: 10px;
     font-weight: 700;
     color: black;
+    border-top: 1px solid #ccc; /* Linha sutil de separação */
+    font-size: 14px;
 }
 
 .icon-footer {
     width: 25px;
     height: 25px;
     object-fit: contain;
+}
+
+.phone-number {
+    font-size: 16px; /* Telefone levemente maior */
 }
 
 /* MEDIA QUERY PARA TELAS PEQUENAS */
