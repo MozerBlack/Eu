@@ -1,4 +1,4 @@
-// FUNÇÃO PARA ATIVAR O SCROLL REVEAL
+// FUNÇÃO PARA ATIVAR O SCROLL REVEAL (Animação de aparição ao rolar)
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Seleciona todos os elementos que devem ser revelados ao rolar
     const elementsToReveal = document.querySelectorAll('.scroll-reveal-item');

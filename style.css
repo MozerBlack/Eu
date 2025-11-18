@@ -38,9 +38,9 @@ body {
 
 /* 2. Animação de flutuação para a foto do atleta */
 @keyframes float {
-    0% { transform: translateY(10px); }
-    50% { transform: translateY(15px); }
-    100% { transform: translateY(10px); }
+    0% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
 }
 .animated-float {
     animation: float 4s ease-in-out infinite;

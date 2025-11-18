@@ -4,75 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Pessoal - João Victor Mozer dos Santos</title>
+    <!-- Link para a fonte Joti One usada no layout -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Joti+One&display=swap">
+    <!-- Link para o arquivo CSS de estilos -->
     <link rel="stylesheet" href="style.css">
-    <!-- Importação da fonte Joti One para elementos de destaque -->
-    <link href="https://fonts.googleapis.com/css2?family=Joti+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- CONTAINER PRINCIPAL -->
     <div class="poster-container">
-        
-        <!-- CABEÇALHO (Animação de entrada) -->
+
+        <!-- HEADER: Logo + Redes Sociais -->
         <header class="header">
-            <img src="karatê sports.jpg" alt="Karate Sports" class="title-logo animated-fade-in">
-            <div class="social-icons">
-                <!-- Ícones com efeito hover -->
-                <a href="#" aria-label="WhatsApp"><img src="whatsapp (2) 1.jpg" alt="WhatsApp" class="icon-img animated-hover"></a>
-                <a href="#" aria-label="Instagram"><img src="instagram (1) 1.jpg" alt="Instagram" class="icon-img animated-hover"></a>
-                <a href="#" aria-label="Facebook"><img src="facebook (1) 1.jpg" alt="Facebook" class="icon-img animated-hover"></a>
+            <!-- Título/Logo com animação de Fade In -->
+            <img src="karatê sports.jpg" alt="" class="title-logo animated-fade-in" onerror="this.src='https://placehold.co/250x40/444/fff?text=KARATE+SPORTS'">
+            
+            <!-- Ícones das Redes Sociais -->
+            <div class="social-icons scroll-reveal-item" style="transition-delay: 0.8s;">
+                <a href="https://wa.me/5541999999999" target="_blank">
+                    <img src="whatsapp (2) 1.jpg" alt="[Image of WhatsApp Icon]" class="icon-img animated-hover" onerror="this.src='https://placehold.co/25x25/25D366/fff?text=W'">
+                </a>
+                <a href="#" target="_blank">
+                    <img src="instagram (1) 1.jpg" alt="[Image of Instagram Icon]" class="icon-img animated-hover" onerror="this.src='https://placehold.co/25x25/E1306C/fff?text=I'">
+                </a>
+                <a href="#" target="_blank">
+                    <img src="facebook (1) 1.jpg" alt="[Image of Facebook Icon]" class="icon-img animated-hover" onerror="this.src='https://placehold.co/25x25/4267B2/fff?text=F'">
+                </a>
             </div>
         </header>
 
-        <!-- SEÇÃO PRINCIPAL: FOTO, BIO E DETALHES -->
-        <div class="info-section">
-            <!-- Foto com animação de flutuação -->
+        <!-- SEÇÃO DE INFORMAÇÕES E BIO -->
+        <section class="info-section scroll-reveal-item" style="transition-delay: 1.2s;">
+            <!-- Foto do Atleta com efeito de Flutuação -->
             <div class="photo-container animated-float">
-                <img src="Mozer .jpg" alt="João Victor Mozer dos Santos" class="athlete-photo">
+                <img src="Mozer .jpg" alt="" class="athlete-photo" onerror="this.src='https://placehold.co/200x200/444/fff?text=FOTO+ATLETA'">
             </div>
-            <!-- Detalhes com animação de Scroll Reveal -->
-            <div class="details-container scroll-reveal-item">
-                <p>Nome: João Victor Mozer dos santos</p>
-                <p>Atleta: Karatê</p>
-                <p>Academia: Araucaria karatê clube</p>
-                <p>Sensei: João Carlin</p>
+
+            <!-- Detalhes e Bio -->
+            <div class="details-container">
+                <p><strong>NOME:</strong> JOÃO VICTOR MOZER DOS SANTOS</p>
+                <p><strong>MODALIDADE:</strong> KARATÊ</p>
+                <p><strong>ACADEMIA:</strong> ARAUCARIA KARATÊ CLUBE</p>
+                <p><strong>SENSEI:</strong> JOÃO CARLIN</p>
                 <p class="bio-text">
-                    Bio: Sou atleta de karatê, treino 
-                    desde os 5 anos de idade e já 
-                    participei de vários campeonatos.
+                    Atleta de Karatê que treina desde os 5 anos de idade, e que já participou de vários campeonatos.
                 </p>
                 <p class="oss">OSS</p>
             </div>
-        </div>
-        
-        <!-- TÍTULO DA SEÇÃO DE GALERIA (Animação de Scroll Reveal) -->
-        <div class="title-conquistas-wrapper scroll-reveal-item">
-            <img src="Rotina e Conquistas.jpg" alt="Rotina e Conquistas" class="section-title-img">
+        </section>
+
+        <!-- SEÇÃO DE CONQUISTAS (Título) -->
+        <div class="title-conquistas-wrapper scroll-reveal-item" style="transition-delay: 1.6s;">
+            <img src="Rotina e Conquistas.jpg" alt="" class="section-title-img" onerror="this.src='https://placehold.co/400x50/eee/444?text=ROTINA+E+CONQUISTAS'">
         </div>
 
-        <!-- GALERIA DE FOTOS (Animação de Scroll Reveal e Hover) -->
-        <div class="gallery">
+        <!-- GALERIA (Grid de Imagens) -->
+        <section class="gallery">
             <!-- Linha 1 -->
-            <div class="gallery-item scroll-reveal-item animated-hover"><img src="sensei Narita .jpg" alt="Sensei e Atleta"></div>
-            <div class="gallery-item scroll-reveal-item animated-hover"><img src="bunkai .jpg" alt="Grupo de Karatê"></div>
-            <div class="gallery-item scroll-reveal-item animated-hover"><img src="campeonato araucaria .jpg" alt="Evento/Competição"></div>
-            <div class="gallery-item scroll-reveal-item animated-hover"><img src="Medalhas .jpg" alt="Medalhas"></div>
-            
+            <div class="gallery-item animated-hover scroll-reveal-item" style="transition-delay: 2.0s;">
+                <img src="sensei Narita .jpg" alt="" onerror="this.src='https://placehold.co/150x100/aaa/fff?text=IMG1'">
+            </div>
+            <div class="gallery-item animated-hover scroll-reveal-item" style="transition-delay: 2.1s;">
+                <img src="bunkai .jpg" alt="" onerror="this.src='https://placehold.co/150x100/bbb/fff?text=IMG2'">
+            </div>
+            <div class="gallery-item animated-hover scroll-reveal-item" style="transition-delay: 2.2s;">
+                <img src="campeonato araucaria .jpg" alt="" onerror="this.src='https://placehold.co/150x100/ccc/fff?text=IMG3'">
+            </div>
+            <div class="gallery-item animated-hover scroll-reveal-item" style="transition-delay: 2.3s;">
+                <img src="podio .jpg" alt="" onerror="this.src='https://placehold.co/150x100/ddd/fff?text=IMG4'">
+            </div>
+
             <!-- Linha 2 -->
-            <div class="gallery-item wide-item scroll-reveal-item animated-hover"><img src="podio .jpg" alt="Atleta no Pódio"></div>
-            <div class="gallery-item wide-item scroll-reveal-item animated-hover"><img src="1° campeonato .jpg" alt="Lutas/Tatame"></div>
-            <div class="gallery-item logo-item scroll-reveal-item animated-hover"><img src=" logo da academia .jpg" alt="Logo Araucaria Karatê Clube"></div>
-        </div>
+            <div class="gallery-item wide-item animated-hover scroll-reveal-item" style="transition-delay: 2.4s;">
+                <img src="Medalhas .jpg" alt="" onerror="this.src='https://placehold.co/150x130/eee/fff?text=IMG5'">
+            </div>
+            <div class="gallery-item wide-item animated-hover scroll-reveal-item" style="grid-column: 2 / span 2; transition-delay: 2.5s;">
+                <img src="1° campeonato .jpg" alt="" onerror="this.src='https://placehold.co/300x130/333/fff?text=IMG6'">
+            </div>
+            <div class="gallery-item logo-item scroll-reveal-item" style="transition-delay: 2.6s;">
+                <img src=" logo da academia .jpg" alt="[Image of Logo Academia]" class="logo-img" onerror="this.src='https://placehold.co/100x100/fff/333?text=LOGO'">
+            </div>
+        </section>
 
-        <!-- RODAPÉ DE CONTATO (Animação de Scroll Reveal) -->
-        <footer class="footer scroll-reveal-item">
-            <img src="whatsapp (2) 1.jpg" alt="WhatsApp Icon" class="icon-footer">
-            <p>Mais informações entre em contato</p>
-            <p class="phone-number">+55 41 9.9999-9999</p>
+        <!-- RODAPÉ -->
+        <footer class="footer scroll-reveal-item" style="transition-delay: 3.0s;">
+            <img src="Mais informações entre em contato +55 41 9.9999-9999.jpg" alt="" class="icon-footer" onerror="this.src='https://placehold.co/25x25/000/fff?text=C'">
+            <span class="phone-number">+55 41 9.9999-9999</span>
         </footer>
-
     </div>
 
-    <!-- Script JavaScript para as animações de rolagem -->
+    <!-- Link para o arquivo JavaScript (Scroll Reveal) -->
     <script src="script.js"></script>
 </body>
 </html>
