@@ -3,97 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Pessoal - João Victor Mozer dos Santos</title>
-    <!-- Link para a fonte Joti One usada no layout -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Joti+One&display=swap">
-    <!-- Link para o arquivo CSS de estilos -->
-    <link rel="stylesheet" href="style.css">
+    <title>Perfil do Atleta - Karatê</title>
+    <!-- Inclui o Tailwind CSS para design e responsividade -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Cores Personalizadas para o tema Karatê (Dojo Digital) */
+        :root {
+            --karate-dark: #1a1a1a; /* Preto quase absoluto */
+            --karate-light: #f5f5f5; /* Branco suave, textura do tatame */
+            --karate-red: #d90000; /* Vermelho forte para faixas e detalhes */
+        }
+
+        /* Configuração do Tailwind para usar cores personalizadas */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dojo-dark': 'var(--karate-dark)',
+                        'dojo-light': 'var(--karate-light)',
+                        'dojo-red': 'var(--karate-red)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+
+        /* -------------------------------------- */
+        /* ANIMAÇÕES CSS */
+        /* -------------------------------------- */
+
+        /* 1. Animação de Flutuação (Float) para a Foto */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+        .animated-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* 2. Scroll Reveal (Inicialmente escondido) */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        /* Classe que o JavaScript adiciona para mostrar o elemento */
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilo da linha divisória em vermelho */
+        .red-line {
+            height: 4px;
+            width: 100%;
+            background-color: var(--karate-red);
+            margin: 24px 0;
+            border-radius: 2px;
+        }
+
+        /* Efeito de hover para cartões */
+        .card-hover:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+    </style>
 </head>
-<body>
+<body class="bg-dojo-light min-h-screen font-sans">
 
     <!-- CONTAINER PRINCIPAL -->
-    <div class="poster-container">
+    <div class="w-full max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
 
-        <!-- HEADER: Logo + Redes Sociais -->
-        <header class="header">
-            <!-- Título/Logo com animação de Fade In -->
-            <img src="karatê sports.jpg" alt="" class="title-logo animated-fade-in" onerror="this.src='https://placehold.co/250x40/444/fff?text=KARATE+SPORTS'">
-            
-            <!-- Ícones das Redes Sociais -->
-            <div class="social-icons scroll-reveal-item" style="transition-delay: 0.8s;">
-                <a href="https://wa.me/5541999999999" target="_blank">
-                    <img src="whatsapp (2) 1.jpg" alt="[Image of WhatsApp Icon]" class="icon-img animated-hover" onerror="this.src='https://placehold.co/25x25/25D366/fff?text=W'">
-                </a>
-                <a href="#" target="_blank">
-                    <img src="instagram (1) 1.jpg" alt="[Image of Instagram Icon]" class="icon-img animated-hover" onerror="this.src='https://placehold.co/25x25/E1306C/fff?text=I'">
-                </a>
-                <a href="#" target="_blank">
-                    <img src="facebook (1) 1.jpg" alt="[Image of Facebook Icon]" class="icon-img animated-hover" onerror="this.src='https://placehold.co/25x25/4267B2/fff?text=F'">
-                </a>
+        <!-- HEADER E APRESENTAÇÃO -->
+        <header class="text-center mb-8 scroll-reveal animated-float">
+            <div class="relative inline-block p-2 bg-white rounded-full shadow-xl">
+                <!-- Foto do Atleta (CORRIGIDO com Placeholder) -->
+                <img src="https://placehold.co/160x160/d90000/ffffff?text=Mozer+Karatê" alt="Foto de Perfil do Atleta Mozer" class="w-40 h-40 object-cover rounded-full border-4 border-dojo-red">
             </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-dojo-dark mt-4">MOZER PEREIRA</h1>
+            <p class="text-xl text-gray-600">Atleta de Karatê &amp; Faixa Preta</p>
         </header>
 
-        <!-- SEÇÃO DE INFORMAÇÕES E BIO -->
-        <section class="info-section scroll-reveal-item" style="transition-delay: 1.2s;">
-            <!-- Foto do Atleta com efeito de Flutuação -->
-            <div class="photo-container animated-float">
-                <img src="Mozer .jpg" alt="" class="athlete-photo" onerror="this.src='https://placehold.co/200x200/444/fff?text=FOTO+ATLETA'">
-            </div>
+        <!-- LINHA DIVISÓRIA -->
+        <div class="red-line scroll-reveal"></div>
 
-            <!-- Detalhes e Bio -->
-            <div class="details-container">
-                <p><strong>NOME:</strong> JOÃO VICTOR MOZER DOS SANTOS</p>
-                <p><strong>MODALIDADE:</strong> KARATÊ</p>
-                <p><strong>ACADEMIA:</strong> ARAUCARIA KARATÊ CLUBE</p>
-                <p><strong>SENSEI:</strong> JOÃO CARLIN</p>
-                <p class="bio-text">
-                    Atleta de Karatê que treina desde os 5 anos de idade, e que já participou de vários campeonatos.
-                </p>
-                <p class="oss">OSS</p>
+        <!-- SEÇÃO DE INFORMAÇÕES PESSOAIS (Cartão Escuro) -->
+        <section class="bg-dojo-dark text-dojo-light p-6 sm:p-10 rounded-xl shadow-2xl mb-8 scroll-reveal card-hover">
+            <h2 class="text-2xl font-bold mb-4 border-b border-dojo-red pb-2">SOBRE O ATLETA</h2>
+
+            <div class="flex flex-col sm:flex-row gap-6">
+                <!-- Bio Textual -->
+                <div class="sm:w-2/3">
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        Com mais de uma década de dedicação ao Karatê, Mozer Pereira é um Faixa Preta que personifica a disciplina e a excelência. Treinando na renomada academia Karatê Sports, ele equilibra a rigorosa rotina de treinamento com o desenvolvimento acadêmico em Análise e Projeto de Sistemas.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed italic border-l-4 border-dojo-red pl-3">
+                        "O caminho do Karatê me ensinou que o maior adversário reside em nós mesmos. Cada treino é uma nova oportunidade de superação." - Mozer
+                    </p>
+                </div>
+
+                <!-- Contato e Detalhes -->
+                <div class="sm:w-1/3 text-sm">
+                    <div class="mb-3">
+                        <p class="font-semibold text-dojo-red">Academia:</p>
+                        <p>Karatê Sports</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="font-semibold text-dojo-red">Contato:</p>
+                        <p>(99) 99999-9999</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-dojo-red">Email:</p>
+                        <p>mozer.pereira@exemplo.com</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- SEÇÃO DE CONQUISTAS (Título) -->
-        <div class="title-conquistas-wrapper scroll-reveal-item" style="transition-delay: 1.6s;">
-            <img src="Rotina e Conquistas.jpg" alt="" class="section-title-img" onerror="this.src='https://placehold.co/400x50/eee/444?text=ROTINA+E+CONQUISTAS'">
-        </div>
+        <!-- SEÇÃO DE CONQUISTAS E ROTINA (Grid de Cartões) -->
+        <section class="mb-8">
+            <h2 class="text-3xl font-bold text-dojo-dark mb-6 text-center scroll-reveal">ROTINA E CONQUISTAS</h2>
 
-        <!-- GALERIA (Grid de Imagens) -->
-        <section class="gallery">
-            <!-- Linha 1 -->
-            <div class="gallery-item animated-hover scroll-reveal-item" style="transition-delay: 2.0s;">
-                <img src="sensei Narita .jpg" alt="" onerror="this.src='https://placehold.co/150x100/aaa/fff?text=IMG1'">
-            </div>
-            <div class="gallery-item animated-hover scroll-reveal-item" style="transition-delay: 2.1s;">
-                <img src="bunkai .jpg" alt="" onerror="this.src='https://placehold.co/150x100/bbb/fff?text=IMG2'">
-            </div>
-            <div class="gallery-item animated-hover scroll-reveal-item" style="transition-delay: 2.2s;">
-                <img src="campeonato araucaria .jpg" alt="" onerror="this.src='https://placehold.co/150x100/ccc/fff?text=IMG3'">
-            </div>
-            <div class="gallery-item animated-hover scroll-reveal-item" style="transition-delay: 2.3s;">
-                <img src="podio .jpg" alt="" onerror="this.src='https://placehold.co/150x100/ddd/fff?text=IMG4'">
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
-            <!-- Linha 2 -->
-            <div class="gallery-item wide-item animated-hover scroll-reveal-item" style="transition-delay: 2.4s;">
-                <img src="Medalhas .jpg" alt="" onerror="this.src='https://placehold.co/150x130/eee/fff?text=IMG5'">
-            </div>
-            <div class="gallery-item wide-item animated-hover scroll-reveal-item" style="grid-column: 2 / span 2; transition-delay: 2.5s;">
-                <img src="1° campeonato .jpg" alt="" onerror="this.src='https://placehold.co/300x130/333/fff?text=IMG6'">
-            </div>
-            <div class="gallery-item logo-item scroll-reveal-item" style="transition-delay: 2.6s;">
-                <img src=" logo da academia .jpg" alt="[Image of Logo Academia]" class="logo-img" onerror="this.src='https://placehold.co/100x100/fff/333?text=LOGO'">
+                <!-- Conquista 1 (CORRIGIDO com Placeholder) -->
+                <div class="bg-white p-4 rounded-lg shadow-md scroll-reveal delay-100 card-hover text-center">
+                    <img src="https://placehold.co/300x96/4a4a4a/ffffff?text=Medalha" alt="Conquista em Campeonato" class="w-full h-24 object-cover rounded-md mb-2">
+                    <p class="font-bold text-dojo-red">Campeonato Estadual</p>
+                    <p class="text-sm text-gray-600">Primeiro lugar Kata e Kumite.</p>
+                </div>
+
+                <!-- Conquista 2 (CORRIGIDO com Placeholder) -->
+                <div class="bg-white p-4 rounded-lg shadow-md scroll-reveal delay-200 card-hover text-center">
+                    <img src="https://placehold.co/300x96/4a4a4a/ffffff?text=Troféu" alt="Troféu do Campeonato" class="w-full h-24 object-cover rounded-md mb-2">
+                    <p class="font-bold text-dojo-red">Troféu Disciplina</p>
+                    <p class="text-sm text-gray-600">Reconhecimento pela Academia.</p>
+                </div>
+
+                <!-- Treino 1 (CORRIGIDO com Placeholder) -->
+                <div class="bg-white p-4 rounded-lg shadow-md scroll-reveal delay-300 card-hover text-center">
+                    <img src="https://placehold.co/300x96/4a4a4a/ffffff?text=Treino+Kata" alt="Treino Focado" class="w-full h-24 object-cover rounded-md mb-2">
+                    <p class="font-bold text-dojo-red">Treino Matinal</p>
+                    <p class="text-sm text-gray-600">Foco em velocidade e técnica.</p>
+                </div>
+
+                <!-- Treino 2 (CORRIGIDO com Placeholder) -->
+                <div class="bg-white p-4 rounded-lg shadow-md scroll-reveal delay-400 card-hover text-center">
+                    <img src="https://placehold.co/300x96/4a4a4a/ffffff?text=Treino+Kumite" alt="Treino de Kumite" class="w-full h-24 object-cover rounded-md mb-2">
+                    <p class="font-bold text-dojo-red">Kumite</p>
+                    <p class="text-sm text-gray-600">Sessões intensivas de combate.</p>
+                </div>
+
+                <!-- Logo da Academia (CORRIGIDO com Placeholder) -->
+                <div class="lg:col-span-2 bg-dojo-dark p-6 rounded-xl shadow-2xl flex items-center justify-center scroll-reveal card-hover">
+                    <img src="https://placehold.co/200x80/d90000/ffffff?text=Karatê+Sports+Logo" alt="Logo Karatê Sports" class="w-2/3 max-h-20 object-contain">
+                </div>
+                
+                <!-- Imagem Extra (CORRIGIDO com Placeholder) -->
+                <div class="lg:col-span-2 bg-dojo-dark p-6 rounded-xl shadow-2xl flex items-center justify-center scroll-reveal delay-100 card-hover">
+                    <img src="https://placehold.co/200x80/1a1a1a/ffffff?text=Faixa+Preta" alt="Detalhe da Faixa Preta" class="w-full max-h-20 object-contain">
+                </div>
+
             </div>
         </section>
 
-        <!-- RODAPÉ -->
-        <footer class="footer scroll-reveal-item" style="transition-delay: 3.0s;">
-            <img src="Mais informações entre em contato +55 41 9.9999-9999.jpg" alt="" class="icon-footer" onerror="this.src='https://placehold.co/25x25/000/fff?text=C'">
-            <span class="phone-number">+55 41 9.9999-9999</span>
+        <!-- RODAPÉ E REDES SOCIAIS -->
+        <footer class="text-center pt-6 border-t border-dojo-dark scroll-reveal">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="text-dojo-dark hover:text-dojo-red transition duration-300">
+                    <!-- Ícone do Instagram (SVG) -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.013 4.85.07c3.275.148 4.772 1.637 4.92 4.92.057 1.266.07 1.646.07 4.85s-.013 3.584-.07 4.85c-.148 3.276-1.637 4.773-4.92 4.92-1.266.057-1.646.07-4.85.07s-3.584-.013-4.85-.07c-3.275-.148-4.772-1.637-4.92-4.92-.057-1.266-.07-1.646-.07-4.85s.013-3.584.07-4.85c.148-3.275 1.637-4.772 4.92-4.92 1.266-.057 1.646-.07 4.85-.07zm0 2.375c-2.31 0-2.395.01-3.238.049-.785.038-1.282.203-1.633.349-.364.156-.677.378-.997.697-.32.32-.54.634-.697.997-.146.351-.311.848-.349 1.633-.039.843-.049.93-.049 3.238s.01 2.395.049 3.238c.038.785.203 1.282.349 1.633.157.364.379.677.698.997.32.32.634.54.997.697.351.146.848.311 1.633.349.843.039.93.049 3.238.049s2.395-.01 3.238-.049c.785-.038 1.282-.203 1.633-.349.364-.157.677-.379.997-.698.32-.32.54-.634.697-.997.146-.351.311-.848.349-1.633.039-.843.049-.93.049-3.238s-.01-2.395-.049-3.238c-.038-.785-.203-1.282-.349-1.633-.157-.364-.379-.677-.698-.997-.32-.32-.634-.54-.997-.697-.351-.146-.848-.311-1.633-.349-.843-.039-.93-.049-3.238-.049zm0 8.01c-1.896 0-3.435-1.54-3.435-3.435s1.54-3.435 3.435-3.435 3.435 1.54 3.435 3.435-1.54 3.435-3.435 3.435zm0-4.51c-1.14 0-2.074.934-2.074 2.074s.934 2.074 2.074 2.074 2.074-.934 2.074-2.074-.934-2.074-2.074-2.074zm5.028-1.564c-.452 0-.818.366-.818.818s.366.818.818.818.818-.366.818-.818-.366-.818-.818-.818z"/>
+                    </svg>
+                </a>
+                <a href="#" class="text-dojo-dark hover:text-dojo-red transition duration-300">
+                    <!-- Ícone do Facebook (SVG) -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.07.3-1.79 1.83-1.79H18V.59S16.59 0 15.15 0C12.33 0 10.5 1.7 10.5 4.87V9.5H7.5v4h3V24h4V13.5z"/></svg>
+                </a>
+            </div>
+            <p class="text-xs text-gray-500">&copy; 2025 Mozer Pereira. Criado para a disciplina de Análise e Projeto de Sistemas.</p>
+            <p class="text-sm font-bold text-dojo-dark mt-1">OSS!</p>
         </footer>
+
     </div>
 
-    <!-- Link para o arquivo JavaScript (Scroll Reveal) -->
-    <script src="script.js"></script>
+    <!-- CÓDIGO JAVASCRIPT PARA ANIMAÇÃO DE ROLAGEM (Scroll Reveal) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToReveal = document.querySelectorAll('.scroll-reveal');
+            
+            const observerOptions = {
+                root: null, 
+                rootMargin: '0px',
+                threshold: 0.1 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Use setTimeout for a staggered effect (optional)
+                        const delay = parseInt(entry.target.dataset.delay || '0', 10);
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target); 
+                        }, delay);
+                    }
+                });
+            }, observerOptions);
+
+            elementsToReveal.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>
