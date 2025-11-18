@@ -1,10 +1,9 @@
 /* -------------------------------------- */
 /* VARIÁVEIS E RESET BÁSICO */
-/* (Mantenho o restante do CSS como estava) */
 /* -------------------------------------- */
 :root {
     --color-bg: #000000;
-    --color-red: #E32636; /* Vermelho Faixa */
+    --color-blue: #007FFF; /* Tema Kumite: Azul Elétrico */
     --color-text: #FFFFFF;
     --color-subtext: #aaaaaa;
 }
@@ -45,7 +44,7 @@ body {
 }
 
 /* -------------------------------------- */
-/* HEADER E INFORMAÇÕES (Sem mudanças aqui) */
+/* HEADER E INFO (Tema Azul) */
 /* -------------------------------------- */
 .header {
     display: flex;
@@ -59,10 +58,10 @@ body {
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    background-color: var(--color-red);
+    background-color: var(--color-blue);
     padding: 5px;
     margin-bottom: 20px;
-    box-shadow: 0 0 0 8px rgba(227, 38, 54, 0.2);
+    box-shadow: 0 0 0 8px rgba(0, 127, 255, 0.2); 
 }
 .athlete-photo {
     width: 100%;
@@ -79,13 +78,13 @@ h1 {
 }
 .subtitle {
     font-size: 1.2em;
-    color: var(--color-red);
+    color: var(--color-blue);
     font-weight: bold;
     margin-top: 5px;
 }
 .faixa-tag {
     font-size: 0.9em;
-    background-color: var(--color-red);
+    background-color: var(--color-blue);
     color: var(--color-text);
     padding: 4px 12px;
     border-radius: 20px;
@@ -105,7 +104,7 @@ h1 {
 .card {
     background-color: #1a1a1a;
     padding: 20px;
-    border-left: 5px solid var(--color-red); 
+    border-left: 5px solid var(--color-blue); 
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
@@ -115,7 +114,7 @@ h1 {
 .card-title {
     font-size: 1.5em;
     font-weight: bold;
-    color: var(--color-red);
+    color: var(--color-blue);
     margin-bottom: 5px;
 }
 .card-text {
@@ -124,7 +123,7 @@ h1 {
 }
 
 /* -------------------------------------- */
-/* SEÇÃO DE BIO E CITAÇÃO (Sem mudanças aqui) */
+/* SEÇÃO DE BIO E CITAÇÃO */
 /* -------------------------------------- */
 .bio-section {
     border-top: 1px solid #333;
@@ -139,68 +138,107 @@ h1 {
     color: var(--color-subtext);
 }
 .quote {
-    border-left: 3px solid var(--color-red);
+    border-left: 3px solid var(--color-blue);
     padding-left: 15px;
     font-style: italic;
     color: var(--color-text);
 }
 
 /* -------------------------------------- */
-/* NOVA SEÇÃO: GALERIA DE FOTOS (Foco de Revista) */
+/* GALERIA DE FOTOS: CARROSSEL */
 /* -------------------------------------- */
 .gallery-section {
     margin-bottom: 40px;
+    padding-bottom: 20px;
 }
 
-.photo-grid {
-    display: grid;
-    /* 3 colunas, sendo a do meio um pouco menor */
-    grid-template-columns: 1fr 1fr 1fr; 
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.grid-item {
-    overflow: hidden;
-    border-radius: 4px;
+.carousel-container {
     position: relative;
-}
-
-.grid-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garante que a imagem preencha o espaço sem deformar */
+    overflow: hidden; 
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%; 
+    box-sizing: border-box;
+}
+
+.carousel-image {
+    width: 100%;
+    height: auto;
     display: block;
-    transition: transform 0.3s ease;
+    max-height: 450px;
+    object-fit: cover;
 }
 
-.grid-image:hover {
-    transform: scale(1.05);
+/* Botões de Navegação (Anterior/Próximo) */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.5em;
+    border-radius: 50%;
+    opacity: 0.7;
+    transition: opacity 0.3s;
 }
 
-/* Faz o item 1 e 4 ocuparem 2 colunas para um layout dinâmico */
-.grid-span-2 {
-    grid-column: span 2;
+.carousel-button:hover {
+    opacity: 1;
 }
 
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+/* Indicadores de slide (os pontinhos) */
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.indicator.active {
+    background-color: var(--color-blue);
+}
 
 /* MEDIA QUERY (Ajustes para Mobile) */
 @media (max-width: 600px) {
     h1 { font-size: 2.2em; letter-spacing: 3px; }
     .highlights { grid-template-columns: 1fr; }
-    
-    /* Na versão mobile, a galeria se torna 2 colunas */
-    .photo-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    .grid-span-2 {
-        grid-column: span 1; /* Todos os itens ocupam apenas 1 coluna no mobile */
-    }
 }
 
 
 /* -------------------------------------- */
-/* RODAPÉ E BOTÃO (Sem mudanças aqui) */
+/* RODAPÉ E BOTÃO (Tema Azul) */
 /* -------------------------------------- */
 .footer {
     margin-top: 40px;
@@ -210,7 +248,7 @@ h1 {
 }
 .contact-button {
     display: inline-block;
-    background-color: var(--color-red);
+    background-color: var(--color-blue);
     color: var(--color-text);
     padding: 12px 30px;
     text-decoration: none;
