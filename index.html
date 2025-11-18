@@ -3,267 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pôster Digital - Mozer Karatê</title>
-    <link href="https://fonts.googleapis.com/css2?family=Joti+One&display=swap" rel="stylesheet">
+    <title>Perfil Minimalista - Mozer Karatê</title>
     
-    <style>
-        /* RESET BÁSICO */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif; 
-        }
-
-        body {
-            background-color: white; 
-            display: flex;
-            justify-content: center;
-            padding: 20px 0;
-        }
-
-        /* CONTAINER PRINCIPAL: Simula o pôster */
-        .poster-container {
-            width: 100%;
-            max-width: 600px; 
-            background-color: white;
-            padding: 20px 30px; 
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
-            overflow: hidden; 
-        }
-
-        /* -------------------------------------- */
-        /* ANIMAÇÕES CSS */
-        /* -------------------------------------- */
-
-        /* 1. Animação de entrada para o título */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animated-fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-
-        /* 2. Animação de flutuação para a foto do atleta */
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-            100% { transform: translateY(0); }
-        }
-        .animated-float {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        /* 3. Efeitos Hover (Transições) para ícones e galeria */
-        .animated-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .animated-hover:hover {
-            transform: scale(1.05); 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
-            z-index: 10;
-        }
-
-        /* 4. Estado inicial para Scroll Reveal (escondido) */
-        .scroll-reveal-item {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, transform; 
-        }
-
-        /* Estado final (visível) aplicado pelo JavaScript */
-        .scroll-reveal-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-
-        /* -------------------------------------- */
-        /* ESTILIZAÇÃO DO LAYOUT (Conforme Design) */
-        /* -------------------------------------- */
-
-        /* HEADER */
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .title-logo { width: 45%; max-height: 40px; object-fit: contain; }
-        .social-icons { display: flex; align-items: center; gap: 10px; }
-        .icon-img { width: 25px; height: 25px; border-radius: 5px; object-fit: contain; }
-
-        /* SEÇÃO DE INFORMAÇÕES E BIO */
-        .info-section {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            padding-bottom: 20px;
-        }
-        .photo-container {
-            width: 45%;
-            max-width: 200px;
-            box-shadow: 0 0 0 5px white, 0 0 0 10px rgba(0, 0, 0, 0.1); 
-            transform: translateY(10px); 
-        }
-        .athlete-photo { width: 100%; height: auto; display: block; border-radius: 50%; }
-
-        .details-container {
-            width: 55%;
-            background-color: #444; 
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            line-height: 1.4;
-            font-size: 14px;
-            font-family: 'Joti One', cursive; 
-        }
-        .details-container p { margin-bottom: 5px; }
-        .bio-text { margin-top: 10px; font-size: 13px; }
-        .oss { text-align: center; font-size: 18px; margin-top: 10px; font-family: 'Joti One', cursive; }
-
-        /* TÍTULO DA GALERIA */
-        .title-conquistas-wrapper { text-align: center; margin: 20px 0 15px 0; }
-        .section-title-img { width: 80%; max-width: 400px; height: auto; }
-
-        /* GALERIA (Grid) */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 5px; 
-            margin-bottom: 20px;
-        }
-        .gallery-item { height: 100px; overflow: hidden; border-radius: 5px; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        /* Layout da segunda linha */
-        .wide-item:nth-child(5) { grid-column: span 1; grid-row: 2 / span 1; height: 130px; }
-        .wide-item:nth-child(6) { grid-column: 2 / span 2; grid-row: 2 / span 1; height: 130px; }
-        .logo-item {
-            grid-column: 4 / span 1;
-            grid-row: 2 / span 1;
-            height: 130px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5px;
-            background-color: #f0f0f0; 
-        }
-        .logo-item img { object-fit: contain; }
-
-        /* RODAPÉ */
-        .footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-            padding: 10px 0;
-            gap: 10px;
-            color: black;
-            border-top: 1px solid #ccc; 
-            font-size: 14px;
-            font-family: 'Joti One', cursive;
-        }
-        .icon-footer { width: 25px; height: 25px; object-fit: contain; }
-        .phone-number { font-size: 16px; }
-
-        /* MEDIA QUERY (Responsividade para Mobile) */
-        @media (max-width: 450px) {
-            .poster-container { padding: 15px; }
-            .info-section { flex-direction: column; align-items: center; }
-            .photo-container, .details-container {
-                width: 100%; max-width: none; transform: none;
-                animation: none; 
-            }
-            .details-container { text-align: left; }
-            
-            /* Layout de 2 colunas para galeria no mobile */
-            .gallery { grid-template-columns: repeat(2, 1fr); gap: 5px; }
-            .gallery-item, .wide-item:nth-child(5), .wide-item:nth-child(6), .logo-item {
-                grid-column: span 1; grid-row: auto; height: 100px;
-            }
-            .footer { flex-wrap: wrap; text-align: center; gap: 5px; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="poster-container">
-        
-        <div class="header animated-fade-in scroll-reveal-item">
-            <h1 class="text-3xl font-bold">MOZER KARATÊ</h1>
-            
-            <div class="social-icons">
-                <a href="#"><img src="https://placehold.co/25x25/000000/ffffff?text=IG" alt="Instagram" class="icon-img animated-hover"></a>
-                <a href="#"><img src="https://placehold.co/25x25/000000/ffffff?text=FB" alt="Facebook" class="icon-img animated-hover"></a>
+    <div class="container">
+
+        <header class="header reveal-item" style="transition-delay: 0.1s;">
+            <div class="photo-wrapper">
+                <img src="https://placehold.co/170x170/E32636/FFFFFF?text=MOZER" alt="Foto de Perfil do Atleta Mozer" class="athlete-photo">
             </div>
-        </div>
+            <h1>MOZER PEREIRA</h1>
+            <p class="subtitle">O Caminho da Excelência</p>
+            <span class="faixa-tag">Faixa Preta (Shodan)</span>
+        </header>
 
-        <div class="info-section">
-            
-            <div class="photo-container animated-float scroll-reveal-item">
-                <img src="https://placehold.co/200x200/444/ffffff?text=Mozer+Foto" alt="Foto do Atleta Mozer" class="athlete-photo">
+        <section class="highlights">
+            <div class="card reveal-item" style="transition-delay: 0.3s;">
+                <p class="card-title">12 Anos</p>
+                <p class="card-text">Experiência no Dojo.</p>
             </div>
-
-            <div class="details-container scroll-reveal-item">
-                <p><strong>Nome:</strong> Mozer Pereira</p>
-                <p><strong>Faixa:</strong> Preta</p>
-                <p><strong>Clube:</strong> Karatê Sports</p>
-                <p><strong>Ocupação:</strong> Estudante (Análise e Projetos)</p>
-                <div class="bio-text">
-                    *Atleta dedicado que combina a disciplina do Karatê com o rigor da tecnologia.*
-                </div>
-                <div class="oss">OSS!</div>
+            <div class="card reveal-item" style="transition-delay: 0.4s;">
+                <p class="card-title">Kata & Kumite</p>
+                <p class="card-text">Diferencial técnico.</p>
             </div>
-        </div>
+            <div class="card reveal-item" style="transition-delay: 0.5s;">
+                <p class="card-title">Análise de Sistemas</p>
+                <p class="card-text">Foco e Disciplina aplicados à TI.</p>
+            </div>
+        </section>
 
-        <div class="title-conquistas-wrapper scroll-reveal-item">
-            <img src="https://placehold.co/400x50/cccccc/000000?text=CONQUISTAS+%26+ROTINA" alt="Título Conquistas" class="section-title-img">
-        </div>
-
-        <div class="gallery">
-            <div class="gallery-item animated-hover scroll-reveal-item"><img src="https://placehold.co/100x100/4a4a4a/ffffff?text=Kata" alt="Imagem Kata"></div>
-            <div class="gallery-item animated-hover scroll-reveal-item"><img src="https://placehold.co/100x100/4a4a4a/ffffff?text=Kumite" alt="Imagem Kumite"></div>
-            <div class="gallery-item animated-hover scroll-reveal-item"><img src="https://placehold.co/100x100/4a4a4a/ffffff?text=Medalha+Ouro" alt="Imagem Medalha"></div>
-            <div class="gallery-item animated-hover scroll-reveal-item"><img src="https://placehold.co/100x100/4a4a4a/ffffff?text=Treino" alt="Imagem Treino"></div>
+        <section class="bio-section reveal-item" style="transition-delay: 0.6s;">
+            <h2 style="font-size: 2em; color: var(--color-text);">Sobre a Jornada</h2>
             
-            <div class="gallery-item wide-item animated-hover scroll-reveal-item"><img src="https://placehold.co/100x130/222/ffffff?text=Físico" alt="Treino Físico"></div>
-            <div class="gallery-item wide-item animated-hover scroll-reveal-item"><img src="https://placehold.co/200x130/d90000/ffffff?text=Campeonato" alt="Imagem Campeonato"></div>
-            <div class="logo-item scroll-reveal-item"><img src="https://placehold.co/100x80/f0f0f0/000000?text=Logo+KS" alt="Logo Karatê Sports"></div>
-        </div>
+            <div class="bio-text">
+                <p>
+                    Mozer Pereira é um atleta de Karatê que transcende os limites do esporte, trazendo a filosofia marcial para a área de tecnologia. Sua jornada é marcada pela busca incessante por precisão, tanto nos movimentos do Kata quanto na codificação de sistemas.
+                </p>
+                <p class="quote">
+                    "Na arte marcial, como na vida, a consistência supera a intensidade momentânea. O foco é a nossa maior arma."
+                </p>
+                <p>
+                    Atualmente, Mozer busca patrocínios para competir em torneios nacionais e internacionais, representando a fusão entre a força física e o poder da mente estratégica.
+                </p>
+            </div>
+        </section>
 
-        <div class="footer scroll-reveal-item">
-            <img src="https://placehold.co/25x25/000000/ffffff?text=Tel" alt="Ícone Telefone" class="icon-footer">
-            <span class="phone-number">(99) 99999-9999</span>
-            <span>|</span>
-            <span>mozer.pereira@exemplo.com</span>
-        </div>
+        <footer class="footer reveal-item" style="transition-delay: 0.7s;">
+            <a href="mailto:mozer.pereira@exemplo.com" class="contact-button">ENTRE EM CONTATO</a>
+            <p class="copyright">&copy; 2025 Mozer Pereira. Todos os direitos reservados. OSS!</p>
+        </footer>
 
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Usa a classe .scroll-reveal-item conforme o CSS fornecido
-            const elementsToReveal = document.querySelectorAll('.scroll-reveal-item');
-            
-            const observerOptions = {
-                root: null, 
-                rootMargin: '0px',
-                threshold: 0.1 
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Adiciona a classe 'visible' para disparar a animação
-                        entry.target.classList.add('visible');
-                        // Para de observar
-                        observer.unobserve(entry.target); 
-                    }
-                });
-            }, observerOptions);
-
-            elementsToReveal.forEach(element => {
-                observer.observe(element);
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

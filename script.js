@@ -1,30 +1,30 @@
-// FUNÇÃO PARA ATIVAR O SCROLL REVEAL (Animação de aparição ao rolar)
+// JAVASCRIPT: Lógica de Animação (Scroll Reveal)
+
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Seleciona todos os elementos que devem ser revelados ao rolar
-    const elementsToReveal = document.querySelectorAll('.scroll-reveal-item');
+    // 1. Seleciona todos os elementos marcados para serem revelados
+    const elementsToReveal = document.querySelectorAll('.reveal-item');
     
-    // Configurações para o Intersection Observer
+    // Configurações do observador (Intersection Observer API)
     const observerOptions = {
         root: null, // Observa a partir da viewport
         rootMargin: '0px',
-        // O elemento é considerado visível quando 10% dele está na tela
-        threshold: 0.1 
+        threshold: 0.1 // 10% do elemento visível
     };
 
-    // 2. Cria o observador
+    // 2. Cria o Intersection Observer
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            // Se o elemento entrou na viewport
+            // 3. Se o elemento está na viewport
             if (entry.isIntersecting) {
-                // 3. Adiciona a classe 'visible', que dispara a transição CSS (animação)
+                // Adiciona a classe 'visible', disparando a animação CSS
                 entry.target.classList.add('visible');
-                // Para de observar o elemento, pois ele já foi revelado
+                // Para de observar o elemento
                 observer.unobserve(entry.target); 
             }
         });
     }, observerOptions);
 
-    // 4. Inicia a observação de cada elemento
+    // 4. Inicia a observação em cada elemento
     elementsToReveal.forEach(element => {
         observer.observe(element);
     });
