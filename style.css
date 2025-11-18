@@ -145,7 +145,7 @@ h1 {
 }
 
 /* -------------------------------------- */
-/* GALERIA DE FOTOS: CARROSSEL (NOVO CSS) */
+/* GALERIA DE FOTOS: CARROSSEL */
 /* -------------------------------------- */
 .gallery-section {
     margin-bottom: 40px;
@@ -246,20 +246,85 @@ h1 {
     border-top: 1px solid #333;
     padding-top: 20px;
 }
+
+/* NOVO: Container para centralizar o botão e os ícones */
+.contact-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; 
+    margin-bottom: 20px;
+}
+
+/* Ajuste o botão para ser estilizado como <button> no HTML */
 .contact-button {
+    /* Mantenha os estilos existentes */
     display: inline-block;
     background-color: var(--color-red);
     color: var(--color-text);
     padding: 12px 30px;
-    text-decoration: none;
+    /* Removido text-decoration: none; pois é um botão */
+    border: none; /* Adicionado para botões */
+    cursor: pointer; /* Adicionado para botões */
     border-radius: 4px;
     font-weight: bold;
-    transition: opacity 0.3s ease, transform 0.2s ease;
+    transition: opacity 0.3s ease, transform 0.2s ease, background-color 0.3s;
+    font-size: 1em; /* Garante o tamanho correto */
 }
+
 .contact-button:hover {
     opacity: 0.9;
     transform: translateY(-2px);
 }
+
+/* Estilo para quando o botão for o "X" de fechar (opcional) */
+.contact-button.close {
+    background-color: #555; /* Cor diferente para indicar ação de fechar */
+}
+
+/* NOVO: Container dos Ícones - Inicialmente oculto com transição suave */
+.social-icons-container {
+    display: flex;
+    gap: 25px; /* Aumentei o espaço entre os ícones */
+    justify-content: center;
+    height: 0; /* Começa com altura zero */
+    opacity: 0;
+    overflow: hidden; /* Esconde o conteúdo */
+    pointer-events: none; /* Desabilita cliques quando oculto */
+    transition: all 0.5s ease-out; /* Transição para altura e opacidade */
+}
+
+/* NOVO: Estado de VISÍVEL (controlado pelo JS) */
+.social-icons-container.show {
+    height: 50px; /* Altura suficiente para mostrar os ícones de 40px + padding */
+    opacity: 1;
+    pointer-events: auto; /* Habilita cliques */
+    padding: 5px 0; /* Pequeno padding para suavizar */
+}
+
+/* NOVO: Estilo individual do Ícone */
+.social-icon {
+    display: block;
+    width: 40px; 
+    height: 40px;
+    opacity: 0; /* Ícones começam invisíveis para a animação sequencial */
+    transform: scale(0.5); /* Começam pequenos */
+    /* A transição será aplicada individualmente pelo JS para o efeito sequencial */
+}
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* NOVO: Classe adicionada pelo JS para ativar a animação de cada ícone */
+.social-icon.animate {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
 .copyright {
     margin-top: 15px;
     font-size: 0.8em;

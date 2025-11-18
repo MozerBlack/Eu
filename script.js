@@ -1,4 +1,4 @@
-// JAVASCRIPT: Lógica de Animação (Scroll Reveal e Carrossel)
+// JAVASCRIPT: Lógica de Animação (Scroll Reveal, Carrossel e Ícones de Contato)
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const prevButton = document.querySelector('.carousel-button.prev');
         const indicatorsContainer = document.querySelector('.carousel-indicators');
 
-        // Se a estrutura do carrossel não for encontrada, a função para
         if (!track || slides.length === 0 || !indicatorsContainer) return;
 
         let currentSlideIndex = 0;
@@ -90,4 +89,48 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     startCarousel();
+
+    // --------------------------------------
+    // 3. LÓGICA DOS ÍCONES DE CONTATO (Animação suave)
+    // --------------------------------------
+    const toggleButton = document.getElementById('contact-toggle-button');
+    const iconsContainer = document.getElementById('social-icons-container');
+    
+    if (toggleButton && iconsContainer) {
+        const socialIcons = Array.from(iconsContainer.querySelectorAll('.social-icon'));
+
+        toggleButton.addEventListener('click', (event) => {
+            event.preventDefault(); 
+            
+            const isShowing = iconsContainer.classList.toggle('show');
+
+            // 1. Atualiza o texto do botão
+            if (isShowing) {
+                toggleButton.textContent = 'FECHAR';
+                toggleButton.classList.add('close');
+            } else {
+                toggleButton.textContent = 'ENTRE EM CONTATO';
+                toggleButton.classList.remove('close');
+            }
+
+            // 2. Controla a animação sequencial dos ícones
+            if (isShowing) {
+                // Se estiver mostrando, anima cada ícone com um pequeno atraso
+                socialIcons.forEach((icon, index) => {
+                    // Remove a classe 'animate' primeiro para garantir que a transição ocorra
+                    icon.classList.remove('animate');
+                    // Adiciona a classe 'animate' com um atraso baseado no index
+                    setTimeout(() => {
+                        icon.classList.add('animate');
+                    }, index * 100); // 100ms de atraso sequencial
+                });
+            } else {
+                // Se estiver fechando, remove a classe de animação
+                socialIcons.forEach(icon => {
+                    icon.classList.remove('animate');
+                });
+            }
+        });
+    }
+
 });
