@@ -5,33 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Pessoal - João Victor Mozer dos Santos</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Importação da fonte Joti One para elementos de destaque, conforme o design -->
+    <!-- Importação da fonte Joti One para elementos de destaque -->
     <link href="https://fonts.googleapis.com/css2?family=Joti+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="poster-container">
         
-        <!-- CABEÇALHO COM TÍTULO E ÍCONES DE REDES SOCIAIS -->
+        <!-- CABEÇALHO (Animação de entrada) -->
         <header class="header">
-            <!-- Imagem do Título: karatê sports.jpg -->
-            <img src="karatê sports.jpg" alt="Karate Sports" class="title-logo">
+            <img src="karatê sports.jpg" alt="Karate Sports" class="title-logo animated-fade-in">
             <div class="social-icons">
-                <!-- Ícones de Redes Sociais -->
-                <a href="#" aria-label="WhatsApp"><img src="whatsapp (2) 1.jpg" alt="WhatsApp" class="icon-img"></a>
-                <a href="#" aria-label="Instagram"><img src="instagram (1) 1.jpg" alt="Instagram" class="icon-img"></a>
-                <a href="#" aria-label="Facebook"><img src="facebook (1) 1.jpg" alt="Facebook" class="icon-img"></a>
+                <!-- Ícones com efeito hover -->
+                <a href="#" aria-label="WhatsApp"><img src="whatsapp (2) 1.jpg" alt="WhatsApp" class="icon-img animated-hover"></a>
+                <a href="#" aria-label="Instagram"><img src="instagram (1) 1.jpg" alt="Instagram" class="icon-img animated-hover"></a>
+                <a href="#" aria-label="Facebook"><img src="facebook (1) 1.jpg" alt="Facebook" class="icon-img animated-hover"></a>
             </div>
         </header>
 
         <!-- SEÇÃO PRINCIPAL: FOTO, BIO E DETALHES -->
         <div class="info-section">
-            <!-- Foto do Atleta: Mozer .jpg -->
-            <div class="photo-container">
+            <!-- Foto com animação de flutuação -->
+            <div class="photo-container animated-float">
                 <img src="Mozer .jpg" alt="João Victor Mozer dos Santos" class="athlete-photo">
             </div>
-            <!-- Detalhes em destaque (fundo cinza) -->
-            <div class="details-container">
+            <!-- Detalhes com animação de Scroll Reveal -->
+            <div class="details-container scroll-reveal-item">
                 <p>Nome: João Victor Mozer dos santos</p>
                 <p>Atleta: Karatê</p>
                 <p>Academia: Araucaria karatê clube</p>
@@ -45,29 +44,27 @@
             </div>
         </div>
         
-        <!-- TÍTULO DA SEÇÃO DE GALERIA -->
-        <div class="title-conquistas-wrapper">
-            <!-- Imagem do Título da Seção: Rotina e Conquistas.jpg -->
+        <!-- TÍTULO DA SEÇÃO DE GALERIA (Animação de Scroll Reveal) -->
+        <div class="title-conquistas-wrapper scroll-reveal-item">
             <img src="Rotina e Conquistas.jpg" alt="Rotina e Conquistas" class="section-title-img">
         </div>
 
-        <!-- GALERIA DE FOTOS (GRID) -->
+        <!-- GALERIA DE FOTOS (Animação de Scroll Reveal e Hover) -->
         <div class="gallery">
             <!-- Linha 1 -->
-            <div class="gallery-item"><img src="sensei Narita .jpg" alt="Sensei e Atleta"></div>
-            <div class="gallery-item"><img src="bunkai .jpg" alt="Grupo de Karatê"></div>
-            <div class="gallery-item"><img src="campeonato araucaria .jpg" alt="Evento/Competição"></div>
-            <div class="gallery-item"><img src="Medalhas .jpg" alt="Medalhas"></div>
+            <div class="gallery-item scroll-reveal-item animated-hover"><img src="sensei Narita .jpg" alt="Sensei e Atleta"></div>
+            <div class="gallery-item scroll-reveal-item animated-hover"><img src="bunkai .jpg" alt="Grupo de Karatê"></div>
+            <div class="gallery-item scroll-reveal-item animated-hover"><img src="campeonato araucaria .jpg" alt="Evento/Competição"></div>
+            <div class="gallery-item scroll-reveal-item animated-hover"><img src="Medalhas .jpg" alt="Medalhas"></div>
             
-            <!-- Linha 2: Itens de layout especial (wide-item) -->
-            <div class="gallery-item wide-item"><img src="podio .jpg" alt="Atleta no Pódio"></div>
-            <div class="gallery-item wide-item"><img src="1° campeonato .jpg" alt="Lutas/Tatame"></div>
-            <div class="gallery-item logo-item"><img src=" logo da academia .jpg" alt="Logo Araucaria Karatê Clube"></div>
+            <!-- Linha 2 -->
+            <div class="gallery-item wide-item scroll-reveal-item animated-hover"><img src="podio .jpg" alt="Atleta no Pódio"></div>
+            <div class="gallery-item wide-item scroll-reveal-item animated-hover"><img src="1° campeonato .jpg" alt="Lutas/Tatame"></div>
+            <div class="gallery-item logo-item scroll-reveal-item animated-hover"><img src=" logo da academia .jpg" alt="Logo Araucaria Karatê Clube"></div>
         </div>
 
-        <!-- RODAPÉ DE CONTATO -->
-        <footer class="footer">
-            <!-- Ícone e Informações de Contato -->
+        <!-- RODAPÉ DE CONTATO (Animação de Scroll Reveal) -->
+        <footer class="footer scroll-reveal-item">
             <img src="whatsapp (2) 1.jpg" alt="WhatsApp Icon" class="icon-footer">
             <p>Mais informações entre em contato</p>
             <p class="phone-number">+55 41 9.9999-9999</p>
@@ -75,7 +72,7 @@
 
     </div>
 
-    <!-- Referência ao JavaScript -->
+    <!-- Script JavaScript para as animações de rolagem -->
     <script src="script.js"></script>
 </body>
 </html>

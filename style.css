@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif; /* Fonte padrão para o corpo do texto */
+    font-family: Arial, sans-serif; 
 }
 
 body {
@@ -13,41 +13,73 @@ body {
     padding: 20px 0;
 }
 
-/* CONTAINER PRINCIPAL: Simula o pôster e centraliza o conteúdo */
+/* CONTAINER PRINCIPAL: Simula o pôster */
 .poster-container {
     width: 100%;
-    max-width: 600px; /* Largura máxima típica de um pôster vertical */
+    max-width: 600px; 
     background-color: white;
     padding: 20px 30px; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave para destacar o "pôster" */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
 }
+
+/* -------------------------------------- */
+/* ANIMAÇÕES CSS */
+/* -------------------------------------- */
+
+/* 1. Animação de entrada para o título */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animated-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+/* 2. Animação de flutuação para a foto do atleta */
+@keyframes float {
+    0% { transform: translateY(10px); }
+    50% { transform: translateY(15px); }
+    100% { transform: translateY(10px); }
+}
+.animated-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* 3. Efeitos Hover (Transições) para ícones e galeria */
+.animated-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.animated-hover:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+    z-index: 10;
+}
+
+/* 4. Estado inicial para Scroll Reveal (escondido) */
+.scroll-reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform; 
+}
+
+/* Estado final (visível) aplicado pelo JavaScript */
+.scroll-reveal-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* -------------------------------------- */
+/* ESTILIZAÇÃO DO LAYOUT (Conforme Design) */
+/* -------------------------------------- */
 
 /* HEADER */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.title-logo {
-    width: 45%; 
-    max-height: 40px;
-    object-fit: contain;
-}
-
-.social-icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.icon-img {
-    width: 25px;
-    height: 25px;
-    border-radius: 5px; 
-    object-fit: contain;
-}
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.title-logo { width: 45%; max-height: 40px; object-fit: contain; }
+.social-icons { display: flex; align-items: center; gap: 10px; }
+.icon-img { width: 25px; height: 25px; border-radius: 5px; object-fit: contain; }
 
 /* SEÇÃO DE INFORMAÇÕES E BIO */
 .info-section {
@@ -56,96 +88,45 @@ body {
     align-items: flex-start;
     padding-bottom: 20px;
 }
-
 .photo-container {
     width: 45%;
     max-width: 200px;
-    /* Efeito de borda dupla (borda branca e sombra) */
     box-shadow: 0 0 0 5px white, 0 0 0 10px rgba(0, 0, 0, 0.1); 
-    transform: translateY(10px); /* Leve deslocamento vertical */
+    transform: translateY(10px); 
 }
-.athlete-photo {
-    width: 100%;
-    height: auto;
-    display: block;
-    /* Para criar o efeito circular/oval */
-    border-radius: 50%;
-}
+.athlete-photo { width: 100%; height: auto; display: block; border-radius: 50%; }
 
 .details-container {
     width: 55%;
-    /* Cor de fundo cinza escuro do design */
     background-color: #444; 
     color: white;
     padding: 15px;
     border-radius: 10px;
     line-height: 1.4;
     font-size: 14px;
-    /* Aplicação da fonte Joti One para o texto principal */
     font-family: 'Joti One', cursive; 
 }
-
-.details-container p {
-    margin-bottom: 5px;
-}
-
-.bio-text {
-    margin-top: 10px;
-    font-size: 13px;
-}
-
-.oss {
-    text-align: center;
-    font-size: 18px;
-    margin-top: 10px;
-    font-family: 'Joti One', cursive;
-}
+.details-container p { margin-bottom: 5px; }
+.bio-text { margin-top: 10px; font-size: 13px; }
+.oss { text-align: center; font-size: 18px; margin-top: 10px; font-family: 'Joti One', cursive; }
 
 /* TÍTULO DA GALERIA */
-.title-conquistas-wrapper {
-    text-align: center;
-    margin: 20px 0 15px 0;
-}
-.section-title-img {
-    width: 80%;
-    max-width: 400px;
-    height: auto;
-}
+.title-conquistas-wrapper { text-align: center; margin: 20px 0 15px 0; }
+.section-title-img { width: 80%; max-width: 400px; height: auto; }
 
-/* GALERIA (CSS GRID) */
+/* GALERIA (Grid) */
 .gallery {
-    /* Define 4 colunas para a primeira linha */
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
     gap: 5px; 
     margin-bottom: 20px;
 }
+.gallery-item { height: 100px; overflow: hidden; border-radius: 5px; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.gallery-item {
-    height: 100px; /* Altura padrão para os itens da primeira linha */
-    overflow: hidden;
-    border-radius: 5px;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garante que a imagem preencha o container */
-    display: block;
-}
-
-/* Ajustes de layout para a segunda linha (Pódio, Luta, Logo) */
-.wide-item:nth-child(5) {
-    grid-column: span 1; 
-    grid-row: 2 / span 1;
-    height: 130px;
-}
-.wide-item:nth-child(6) {
-    grid-column: 2 / span 2; /* Ocupa 2 colunas */
-    grid-row: 2 / span 1;
-    height: 130px;
-}
-
+/* Layout da segunda linha */
+.wide-item:nth-child(5) { grid-column: span 1; grid-row: 2 / span 1; height: 130px; }
+.wide-item:nth-child(6) { grid-column: 2 / span 2; grid-row: 2 / span 1; height: 130px; }
 .logo-item {
     grid-column: 4 / span 1;
     grid-row: 2 / span 1;
@@ -154,11 +135,9 @@ body {
     align-items: center;
     justify-content: center;
     padding: 5px;
-    background-color: #f0f0f0; /* Fundo claro para destacar o logo */
+    background-color: #f0f0f0; 
 }
-.logo-item img {
-    object-fit: contain;
-}
+.logo-item img { object-fit: contain; }
 
 /* RODAPÉ */
 .footer {
@@ -173,53 +152,23 @@ body {
     font-size: 14px;
     font-family: 'Joti One', cursive;
 }
+.icon-footer { width: 25px; height: 25px; object-fit: contain; }
+.phone-number { font-size: 16px; }
 
-.icon-footer {
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
-}
-
-.phone-number {
-    font-size: 16px; 
-}
-
-/* MEDIA QUERY (Responsividade para telas menores, como celular) */
+/* MEDIA QUERY (Responsividade para Mobile) */
 @media (max-width: 450px) {
-    .poster-container {
-        padding: 15px;
-    }
-    /* Muda para layout de coluna no mobile */
-    .info-section {
-        flex-direction: column;
-        align-items: center;
-    }
+    .poster-container { padding: 15px; }
+    .info-section { flex-direction: column; align-items: center; }
     .photo-container, .details-container {
-        width: 100%;
-        max-width: none;
-        transform: none;
-        text-align: center;
+        width: 100%; max-width: none; transform: none;
+        animation: none; 
     }
-    .details-container {
-        text-align: left;
-    }
+    .details-container { text-align: left; }
     
-    /* Galeria: Muda para 2 colunas e remove o layout complexo */
-    .gallery {
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 5px;
+    /* Layout de 2 colunas para galeria no mobile */
+    .gallery { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+    .gallery-item, .wide-item:nth-child(5), .wide-item:nth-child(6), .logo-item {
+        grid-column: span 1; grid-row: auto; height: 100px;
     }
-    .gallery-item, 
-    .wide-item:nth-child(5), 
-    .wide-item:nth-child(6), 
-    .logo-item {
-        grid-column: span 1; /* Todos ocupam 1 coluna */
-        grid-row: auto; /* Reorganiza automaticamente */
-        height: 100px;
-    }
-    .footer {
-        flex-wrap: wrap;
-        text-align: center;
-        gap: 5px;
-    }
+    .footer { flex-wrap: wrap; text-align: center; gap: 5px; }
 }
