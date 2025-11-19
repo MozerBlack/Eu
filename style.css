@@ -170,13 +170,24 @@ h1 {
     box-sizing: border-box;
 }
 
+/* ... [seu código CSS anterior] ... */
+
+/* -------------------------------------- */
+/* GALERIA DE FOTOS: CARROSSEL */
+/* -------------------------------------- */
+/* ... [outros estilos do carrossel] ... */
+
+
 .carousel-image {
     width: 100%;
     height: auto;
     display: block;
     max-height: 450px;
-    object-fit: cover;
+    /* CORREÇÃO: Usamos 'contain' para mostrar a imagem inteira, sem cortar, mantendo a proporção. */
+    object-fit: contain; 
 }
+
+/* ... [seu código CSS posterior] ... */
 
 /* Botões de Navegação (Anterior/Próximo) */
 .carousel-button {

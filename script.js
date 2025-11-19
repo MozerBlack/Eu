@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextButton = document.querySelector('.carousel-button.next');
         const prevButton = document.querySelector('.carousel-button.prev');
         const indicatorsContainer = document.querySelector('.carousel-indicators');
+        
+        // NOVO: Tempo do intervalo em milissegundos (4 segundos)
+        const intervalTime = 4000;
+        let slideInterval; 
 
         if (!track || slides.length === 0 || !indicatorsContainer) return;
 
@@ -47,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 indicator.classList.add('active');
             }
             indicator.addEventListener('click', () => {
+                resetInterval(); // Para e reinicia o auto-play
                 moveToSlide(index);
             });
             indicatorsContainer.appendChild(indicator);
@@ -60,23 +65,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const moveToSlide = (targetIndex) => {
+            // Garante que o índice esteja dentro dos limites
+            if (targetIndex >= slides.length) {
+                targetIndex = 0;
+            } else if (targetIndex < 0) {
+                targetIndex = slides.length - 1;
+            }
+
             // Calcula a largura do slide em tempo real
             const slideWidth = slides[0].getBoundingClientRect().width;
             track.style.transform = 'translateX(-' + (targetIndex * slideWidth) + 'px)';
             currentSlideIndex = targetIndex;
             updateIndicators(targetIndex);
         }
+        
+        const nextSlide = () => {
+            moveToSlide(currentSlideIndex + 1);
+        }
 
-        // Navegação para o próximo slide
+        // NOVO: Função para iniciar o intervalo
+        const startInterval = () => {
+            slideInterval = setInterval(nextSlide, intervalTime);
+        }
+        
+        // NOVO: Função para parar e reiniciar o intervalo
+        const resetInterval = () => {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+
+        // Navegação manual (para e reinicia o auto-play)
         nextButton.addEventListener('click', () => {
-            let newIndex = (currentSlideIndex + 1) % slides.length;
-            moveToSlide(newIndex);
+            resetInterval(); 
+            nextSlide();
         });
 
-        // Navegação para o slide anterior
         prevButton.addEventListener('click', () => {
-            let newIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-            moveToSlide(newIndex);
+            resetInterval();
+            moveToSlide(currentSlideIndex - 1);
         });
 
         // Ajusta o carrossel se a tela for redimensionada (para manter o slide correto visível)
@@ -86,6 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Posicionamento inicial
         moveToSlide(0); 
+        
+        // INICIA O CARROSSEL AUTOMÁTICO
+        startInterval(); 
     };
 
     startCarousel();
